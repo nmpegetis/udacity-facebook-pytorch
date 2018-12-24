@@ -1,6 +1,15 @@
+import os
 import numpy as np
+from numpy import genfromtxt
+import matplotlib.pyplot as plt
+
 # Setting the random seed, feel free to change it and see different solutions.
 np.random.seed(42)
+my_data = genfromtxt(os.getcwd() + '/lesson2-10/data.csv', delimiter=',')
+
+X = np.array(my_data[:, [0, 1]])
+y = np.array(my_data[:, 2])
+num_epochs = 25
 
 
 def stepFunction(t):
@@ -40,7 +49,7 @@ def perceptronStep(X, y, W, b, learn_rate=0.01):
 # and see your results plotted below.
 
 
-def trainPerceptronAlgorithm(X, y, learn_rate=0.01, num_epochs=25):
+def trainPerceptronAlgorithm(X, y, learn_rate=0.01, num_epochs=num_epochs):
     x_min, x_max = min(X.T[0]), max(X.T[0])
     y_min, y_max = min(X.T[1]), max(X.T[1])
     W = np.array(np.random.rand(2, 1))
@@ -50,5 +59,26 @@ def trainPerceptronAlgorithm(X, y, learn_rate=0.01, num_epochs=25):
     for i in range(num_epochs):
         # In each epoch, we apply the perceptron step.
         W, b = perceptronStep(X, y, W, b, learn_rate)
-        boundary_lines.append((-W[0]/W[1], -b/W[1]))
+        boundary_lines.append((-W[0] / W[1], -b / W[1]))
     return boundary_lines
+
+
+boundary_lines = trainPerceptronAlgorithm(X, y)
+for i in range(num_epochs):
+    if i == num_epochs-1:
+        plt.plot(boundary_lines[i], 'k-')
+        break
+    print(i)
+    print(boundary_lines[i])
+    plt.plot(boundary_lines[i], 'g--')
+    plt.xlim(-0.5, 1.5)
+    plt.ylim(-0.5, 1.5)
+color = 'blue'
+for i, y_i in enumerate(y):
+    if y_i != 0:
+        color = 'blue'
+    else:
+        color = 'red'
+    plt.scatter(X[i][0], X[i][1], c=color)
+
+plt.show()
