@@ -1,6 +1,6 @@
 import os
 import numpy as np
-from numpy import genfromtxt
+from numpy import genfromtxt, fliplr, flipud
 import matplotlib.pyplot as plt
 
 # Setting the random seed, feel free to change it and see different solutions.
@@ -59,26 +59,28 @@ def trainPerceptronAlgorithm(X, y, learn_rate=0.01, num_epochs=num_epochs):
     for i in range(num_epochs):
         # In each epoch, we apply the perceptron step.
         W, b = perceptronStep(X, y, W, b, learn_rate)
-        boundary_lines.append((-W[0] / W[1], -b / W[1]))
+        boundary_lines.append((-W[0] / W[1]+1.5, -b / W[1]))
     return boundary_lines
 
 
-boundary_lines = trainPerceptronAlgorithm(X, y)
+boundary_lines = np.fliplr(trainPerceptronAlgorithm(X, y))
 for i in range(num_epochs):
     if i == num_epochs-1:
-        plt.plot(boundary_lines[i], 'k-')
+        plt.plot(boundary_lines[i], 'k-', zorder=1)
         break
     print(i)
     print(boundary_lines[i])
-    plt.plot(boundary_lines[i], 'g--')
+    plt.plot(boundary_lines[i], 'g--',  zorder=1)
     plt.xlim(-0.5, 1.5)
     plt.ylim(-0.5, 1.5)
+
 color = 'blue'
 for i, y_i in enumerate(y):
     if y_i != 0:
         color = 'blue'
     else:
         color = 'red'
-    plt.scatter(X[i][0], X[i][1], c=color)
+    plt.scatter(X[i][0], X[i][1], c=color, edgecolors='k',  zorder=2)
+
 
 plt.show()
