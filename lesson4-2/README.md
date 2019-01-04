@@ -4,7 +4,7 @@ In this notebook, you'll get introduced to PyTorch, a framework for building and
 ## Neural Networks
 Deep Learning is based on artificial neural networks which have been around in some form since the late 1950s. The networks are built from individual parts approximating neurons, typically called units or simply "neurons." Each unit has some number of weighted inputs. These weighted inputs are summed together (a linear combination) then passed through an activation function to get the unit's output.
 
-<img src="assets/simple_neuron.png" width=400px>
+<img src="../assets/simple_neuron.png" width=400px>
 
 Mathematically this looks like:
 
@@ -33,7 +33,7 @@ $$
 ## Tensors
 It turns out neural network computations are just a bunch of linear algebra operations on tensors, a generalization of matrices. A vector is a 1-dimensional tensor, a matrix is a 2-dimensional tensor, an array with three indices is a 3-dimensional tensor (RGB color images for example). The fundamental data structure for neural networks are tensors and PyTorch (as well as pretty much every other deep learning framework) is built around tensors.
 
-<img src="assets/tensor_examples.svg" width=600px>
+<img src="../assets/tensor_examples.svg" width=600px>
 
 With the basics covered, it's time to explore how we can use PyTorch to build a simple neural network.
 
@@ -115,7 +115,7 @@ I usually use .view(), but any of the three methods will work for this. So, now 
 ##Stack them up!
 That's how you can calculate the output for a single neuron. The real power of this algorithm happens when you start stacking these individual units into layers and stacks of layers, into a network of neurons. The output of one layer of neurons becomes the input for the next layer. With multiple input units and output units, we now need to express the weights as a matrix.
 
-<img src='assets/multilayer_diagram_weights.png' width=450px>
+<img src='../assets/multilayer_diagram_weights.png' width=450px>
 
 The first layer shown on the bottom here are the inputs, understandably called the input layer. The middle layer is called the hidden layer, and the final layer (on the right) is the output layer. We can express this network mathematically with matrices again and use matrix multiplication to get linear combinations for each unit in one operation. For example, the hidden layer ($h_1$ and $h_2$ here) can be calculated
 
