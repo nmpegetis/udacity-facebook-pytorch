@@ -29,7 +29,7 @@ get_ipython().run_line_magic('config', "InlineBackend.figure_format = 'retina'")
 #
 # Now we're going to build a larger network that can solve a (formerly) difficult problem, identifying text in an image. Here we'll use the MNIST dataset which consists of greyscale handwritten digits. Each image is 28x28 pixels, you can see a sample below
 #
-# <img src='assets/mnist.png'>
+# <img src='../assets/mnist.png'>
 #
 # Our goal is to build a neural network that can take one of these images and predict the digit in the image.
 #
@@ -105,7 +105,7 @@ out = torch.mm(h, w2) + b2
 
 # %% [markdown]
 # Now we have 10 outputs for our network. We want to pass in an image to our network and get out a probability distribution over the classes that tells us the likely class(es) the image belongs to. Something that looks like this:
-# <img src='assets/image_distribution.png' width=500px>
+# <img src='../assets/image_distribution.png' width=500px>
 #
 # Here we see that the probability for each class is roughly the same. This is representing an untrained network, it hasn't seen any data yet so it just returns a uniform distribution with equal probabilities for each class.
 #
@@ -243,13 +243,13 @@ class Network(nn.Module):
 #
 # So far we've only been looking at the softmax activation, but in general any function can be used as an activation function. The only requirement is that for a network to approximate a non-linear function, the activation functions must be non-linear. Here are a few more examples of common activation functions: Tanh (hyperbolic tangent), and ReLU (rectified linear unit).
 #
-# <img src="assets/activation.png" width=700px>
+# <img src="../assets/activation.png" width=700px>
 #
 # In practice, the ReLU function is used almost exclusively as the activation function for hidden layers.
 # %% [markdown]
 # ### Your Turn to Build a Network
 #
-# <img src="assets/mlp_mnist.png" width=600px>
+# <img src="../assets/mlp_mnist.png" width=600px>
 #
 # > **Exercise:** Create a network with 784 input units, a hidden layer with 128 units and a ReLU activation, then a hidden layer with 64 units and a ReLU activation, and finally an output layer with a softmax activation as shown above. You can use a ReLU activation with the `nn.ReLU` module or `F.relu` function.
 #
